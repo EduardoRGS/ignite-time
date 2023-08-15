@@ -8,7 +8,8 @@ export function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
+
+     <BrowserRouter>
         <Router />
       
      </BrowserRouter>
