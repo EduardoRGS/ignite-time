@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { CountdownContainer, Separator } from "./styles";
-import { CyclesContext } from "../..";
 import { differenceInSeconds } from "date-fns";
+import { CyclesContext } from "../../../../contexts/CyclesContext";
 
 
 export function Countdown() {
@@ -9,7 +9,7 @@ export function Countdown() {
   const { 
     activeCycle, 
     activeCycleId, 
-    markCurrentCyclesAsFiished, 
+    interruptCurrentCycle, 
     amountSecondsPassed, 
     setSecondsPassed } = useContext(CyclesContext)
 
@@ -33,7 +33,7 @@ export function Countdown() {
         )
 
         if (secondsDifference >= totalSeconds) {
-         markCurrentCyclesAsFiished()
+          interruptCurrentCycle()
 
          setSecondsPassed(totalSeconds)
           clearInterval(interval)
@@ -46,7 +46,7 @@ export function Countdown() {
     return () => {
       clearInterval(interval)
     }
-  }, [activeCycle, activeCycleId, markCurrentCyclesAsFiished, setSecondsPassed, totalSeconds])
+  }, [activeCycle, activeCycleId, interruptCurrentCycle, setSecondsPassed, totalSeconds])
 
   useEffect(() => {
     if (activeCycle) {
